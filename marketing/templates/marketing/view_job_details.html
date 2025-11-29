@@ -19,9 +19,10 @@
     </div>
 </div>
 
-<div style="display: grid; grid-template-columns: 350px 1fr 320px; gap: 1.5rem; margin-bottom: 2rem;">
+<div style="display: grid; grid-template-columns: {% if has_ai_summary %}350px 1fr 320px{% else %}1fr 320px{% endif %}; gap: 1.5rem; margin-bottom: 2rem;">
     
     <!-- LEFT SIDE: AI Summary -->
+    {% if has_ai_summary %}
     <div class="card" style="height: fit-content; position: sticky; top: 20px;">
         <div class="card-header">
             <h2 class="card-title" style="margin: 0;">AI Generated Summary</h2>
@@ -71,6 +72,7 @@
             </div>
         </div>
     </div>
+    {% endif %}
     
     <!-- MIDDLE: Job Details -->
     <div style="display: flex; flex-direction: column; gap: 1.5rem;">

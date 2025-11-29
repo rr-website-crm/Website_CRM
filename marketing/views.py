@@ -1571,6 +1571,12 @@ def view_job_details(request, system_id):
     
     # Get all summary versions
     summary_versions = job.summary_versions.all().order_by('version_number')
+    has_ai_summary = (
+        summary_versions.exists()
+        or bool(job.ai_summary_version)
+        or bool(job.job_summary)
+        or bool(job.ai_summary_generated_at)
+    )
     
     # Get action logs for timeline
     action_logs = job.action_logs.all().order_by('timestamp')
@@ -1695,6 +1701,7 @@ def view_job_details(request, system_id):
         'timeline_events': timeline_events,
         'job_amount_display': _format_currency(job.amount),
         'job_system_amount_display': _format_currency(job.system_expected_amount),
+        'has_ai_summary': has_ai_summary,
     }
     
     return render(request, 'marketing/view_job_details.html', context)

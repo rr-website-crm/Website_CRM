@@ -202,6 +202,7 @@ class Job(models.Model):
         ('hold', 'Hold'),
         ('query', 'Query'),
         ('cancelled', 'Cancelled'),
+        ('Review', 'Review'),
     ]
     
     # Primary identifiers
